@@ -1,122 +1,369 @@
-# Wildfire Inspection Triage Map
+# Wildfire Inspection Triage Map  
 ## Product Requirements Brief
 
-### 1. Product Context
+**Project type:** Portfolio prototype  
+**Role:** Product Owner / Product Manager / Web GIS Prototype Builder  
+**Domain:** Government workflows, Web GIS, disaster response, public works, geospatial decision support  
+**Prototype status:** Phase 1 MVP  
+**Live demo:** https://wildfire-inspection-triage-map.vercel.app  
+**GitHub repo:** https://github.com/ruizhangportfolio/wildfire-inspection-triage-map  
 
-Wildfire Inspection Triage Map is a Phase 1 portfolio prototype for post-wildfire inspection prioritization in San Diego County. It combines a real dark basemap for geographic context with local synthetic operational GeoJSON layers for wildfire boundary, parcels, public assets, incidents, road access, priority signals, and workflow status.
+---
 
-The prototype is designed to demonstrate product thinking for a GIS decision-support workflow, not to represent live emergency operations or real inspection results.
+## 1. Executive Summary
 
-### 2. Product Thesis
+Wildfire Inspection Triage Map is a Web GIS decision-support prototype for helping local government teams prioritize post-wildfire property and public-asset inspections.
 
-Post-wildfire inspection teams need more than a map. They need a clear way to translate scattered geospatial and operational signals into a prioritized queue of field actions.
+This brief demonstrates how I approached the project as a product manager, not only as a builder:
 
-The product thesis is that a focused Web GIS interface can help operations teams move from situational awareness to inspection triage by combining location context, priority logic, explainability, and workflow status in one view.
+- Defined a post-wildfire inspection triage workflow for government operations teams.
+- Translated fragmented geospatial and operational signals into explainable product requirements.
+- Scoped a Phase 1 MVP with clear non-goals and product trade-offs.
+- Designed a transparent priority logic that supports user trust rather than replacing human judgment.
+- Outlined future integration paths for public GIS services, aerial imagery, imagery-change detection, and government workflow pilots.
 
-### 3. Customer Problem
+The prototype uses a real Web GIS basemap for geographic context and synthetic operational GeoJSON layers to demonstrate the workflow. It is not an official emergency-response system.
 
-After a wildfire, public agencies may need to review many parcels, roads, and public assets with limited field capacity. Damage signals can come from different places: affected-area boundaries, reported incidents, road access constraints, imagery-change indicators, asset records, and local knowledge.
+---
 
-Without a shared triage workflow, teams may spend too much time switching between maps, spreadsheets, reports, and status trackers before deciding what should be inspected first.
+## 2. Product Context
 
-### 4. Target Users & Stakeholders
+After a wildfire, local government teams often need to coordinate inspections across affected parcels, roads, public assets, reported incidents, and infrastructure access constraints. The problem is not simply visualizing the affected area. The harder operational problem is deciding what should be inspected first, why it should be prioritized, and how teams can move from map review to field action.
 
-- Emergency management and public works operations coordinators who need to prioritize inspection work.
-- GIS analysts who prepare and maintain spatial layers for operational review.
-- Field inspection coordinators who need a queue of locations with clear next actions.
-- Asset and infrastructure teams responsible for public facilities, roads, and service continuity.
-- Leadership or cross-functional stakeholders who need a transparent view of prioritization logic.
+This prototype explores how a map-based product could help emergency management, public works, GIS, and inspection teams review post-event signals in one workflow and turn them into a prioritized inspection queue.
 
-### 5. MVP Scope
+The Phase 1 MVP focuses on triage and explainability. It does not attempt to predict fire spread, dispatch emergency responders, optimize field routes, or serve as a production government system.
 
-Phase 1 focuses on a polished, map-based triage workflow:
+---
 
-- Dark Web GIS map with real basemap context.
-- Synthetic wildfire affected-area boundary.
-- Synthetic parcel, public asset, incident, and road-access layers.
-- Click and hover interactions for map features.
-- Right-side Triage panel with item details, priority score, workflow status, recommended action, priority factors, and imagery concept.
-- Inspection Queue tab with priority and status context.
-- Product Notes tab explaining assumptions, scope, and future integration readiness.
-- Compact Layers control with basemap selector, layer toggles, and collapsed legend.
+## 3. Product Thesis
 
-### 6. Non-Goals for Phase 1
+Aerial imagery and GIS layers create product value only when they help government teams make faster, explainable operational decisions.
 
-- No backend services or persistent database.
-- No user authentication or role-based permissions.
-- No live emergency-response integration.
-- No real AI damage detection.
-- No routing optimization or dispatch workflow.
-- No paid APIs or secret tokens.
-- No claim that synthetic parcels, incidents, scores, statuses, or inspection recommendations are real.
+This prototype explores how parcel context, imagery-change signals, reported incidents, road access, and public-asset data could be packaged into a government-facing inspection triage workflow — not just another map viewer.
 
-### 7. Product Requirements
+---
 
-- The map must make the sample inspection area understandable within a real geographic context.
-- Operational layers must remain visually dominant over the basemap.
-- Users must be able to identify interactive parcels, assets, incidents, and road-access segments through hover feedback.
-- Clicking an interactive feature must select it, highlight it, and update the Triage panel without opening a map popup.
-- Queue item selection must pan the map safely without over-zooming beyond reliable basemap tile levels.
-- Priority scoring must be explainable through visible factors, not presented as a black-box output.
-- Recommended action must appear high enough in the Triage panel to support decision-making.
-- Layer visibility and basemap selection must be available without cluttering the map.
-- Documentation must clearly distinguish synthetic operational data from real basemap context.
+## 4. Customer Problem
 
-### 8. Acceptance Criteria
+After a wildfire, local government teams do not simply need to “see a map.” They need to decide which properties, roads, and public assets should be inspected first when inspection capacity is limited, signals are fragmented, and multiple departments need a shared explanation for prioritization.
 
-- User can view the wildfire boundary, parcels, public assets, incidents, road-access constraints, and selected feature highlight.
-- User can hover over interactive features and see pointer feedback, visual emphasis, and a lightweight tooltip.
-- User can click a parcel or asset and see name, type, address or ID, priority score, status, recommended action, and priority factors.
-- User can click each Queue item and confirm the map pans safely, the selected feature highlights correctly, and the Triage panel resets to the top.
-- User can expand Layers, switch basemaps, toggle layers, open the Legend, and collapse the control again.
-- Product Notes and README explain that Phase 1 uses synthetic operational GeoJSON with a real basemap for geographic context.
-- The app can run locally with `npm install`, `npm run dev`, and production build commands.
+The affected area may already be known. The operational challenge is turning scattered geospatial and field signals into an inspection queue that teams can trust, explain, and act on.
 
-### 9. Product Trade-offs
+Common pain points include:
 
-- Used synthetic operational GeoJSON to validate product workflow before integrating real public GIS services.
-- Chose explainable scoring over complex predictive modeling so users can understand why an item is prioritized.
-- Kept full details in the right-side panel instead of map popups to preserve map clarity.
-- Limited queue navigation zoom to maintain geographic context and avoid unavailable raster tiles.
-- Avoided backend and authentication so the Phase 1 prototype stays deployable, reviewable, and portfolio-ready.
+- Inspection capacity is limited immediately after a wildfire.
+- Damage signals may be distributed across maps, resident reports, road conditions, parcel records, asset inventories, and imagery.
+- GIS context and operational status are often separated across different tools.
+- Teams need to justify why one property, road, or asset is prioritized before another.
+- Field teams need clear next actions, not just visual map layers.
+- Government users need transparency and workflow confidence before relying on prioritization logic.
 
-### 10. Priority Logic
+---
 
-Each parcel or public asset receives a simulated priority level and numeric score. The score is based on product-defined factors that mirror the kinds of signals a real workflow could use:
+## 5. Target Users & Stakeholders
 
-- Exposure risk within or near the affected area.
-- Proximity to reported incidents.
-- Asset criticality.
-- Road access risk or constraints.
-- Imagery-change indicator concept.
-- Inspection coverage gap or unresolved workflow status.
+### Economic buyer
 
-Priority output is intentionally simple:
+City or county government, emergency management leadership, and public works leadership responsible for disaster response readiness, inspection coordination, and operational efficiency.
 
-- High: assign field inspection and verify visible changes.
-- Medium: review after high-priority items or when crews are nearby.
-- Low: monitor or clear after remote review if no additional signals appear.
+### Primary user
 
-### 11. Success Metrics I Would Track
+Inspection coordinator or public works operations manager responsible for prioritizing post-event field reviews and coordinating limited inspection capacity.
 
-- Time to identify the highest-priority inspection items.
-- Percentage of queue items reviewed and moved to a workflow status.
-- User comprehension of why an item is high, medium, or low priority.
-- Map interaction success rate for selecting parcels, assets, incidents, and queue items.
-- Reduction in manual switching between maps, reports, and spreadsheets during triage.
-- In a future real-data phase: inspection outcome accuracy, false-positive review burden, and field-team feedback on priority usefulness.
+### Technical user
 
-### 12. Future Integration Opportunities
+GIS analyst responsible for maintaining parcel layers, public assets, incident data, road access constraints, and map context.
 
-- Replace local synthetic GeoJSON with public GIS datasets or ArcGIS REST / FeatureServer endpoints.
-- Connect parcel, road, asset, and incident layers from county or city GIS services.
-- Add field assignment, inspection updates, and exportable inspection lists.
-- Integrate before / after imagery sources and human-reviewed change indicators.
-- Add audit history, status persistence, and stakeholder reporting.
-- Explore routing or crew planning only after the core triage workflow is validated.
+### Field user
 
-### 13. Prototype Disclaimer
+Damage assessment or inspection teams who need clear assignments, status context, and prioritization rationale.
 
-This is a portfolio prototype, not an official emergency-response product. Phase 1 uses local synthetic operational GeoJSON for parcels, incidents, public assets, road constraints, priority scores, imagery-change indicators, statuses, and recommended actions. The basemap provides real geographic context, but the operational layers and workflow signals are simulated for product demonstration.
+### Internal product stakeholders
 
-The prototype is structured so synthetic sources can be replaced with public GIS APIs or ArcGIS FeatureServer endpoints in a future phase.
+Sales engineering, customer success, product, and engineering teams supporting government solution discovery, demos, pilots, implementation planning, and feedback loops.
+
+---
+
+## 6. MVP Scope
+
+The Phase 1 MVP focuses on validating the core inspection-prioritization workflow.
+
+### In scope
+
+- Prioritized inspection queue
+- Map-to-triage workflow
+- Explainable priority scoring
+- Parcel and public-asset review
+- Reported incident and road-access context
+- Status review / workflow update
+- Layer visibility controls
+- Synthetic operational GeoJSON data model
+- Integration-ready map layer structure
+
+### Non-goals for Phase 1
+
+- Fire-spread prediction
+- Real-time emergency dispatch
+- Routing optimization
+- Production government data integration
+
+Authentication, backend persistence, mobile field forms, field routing, and user permissions were intentionally left out of Phase 1 so the prototype could focus on the core triage workflow.
+
+---
+
+## 7. Product Requirements
+
+### Requirement 01 — Prioritized inspection queue
+
+**Pain point:**  
+Inspection capacity is limited after a wildfire, but decision signals are scattered across maps, resident reports, road conditions, asset data, and imagery.
+
+**Product requirement:**  
+Provide a ranked inspection queue that combines geospatial and operational signals into an explainable priority order.
+
+**Acceptance criteria:**  
+Each queue item shows priority level, score, recommended action, workflow status, and contributing factors.
+
+**Priority:**  
+P0 for Phase 1 because inspection prioritization is the core workflow.
+
+---
+
+### Requirement 02 — Connected map and triage workflow
+
+**Pain point:**  
+Map context and operational follow-up are often disconnected.
+
+**Product requirement:**  
+Keep parcel selection, map highlight, triage details, and queue movement connected in one workflow.
+
+**Acceptance criteria:**  
+Selecting a parcel or queue item updates the map, highlights the selected feature, and displays the matching triage record.
+
+**Priority:**  
+P0 for Phase 1 because the product must connect spatial review with operational action.
+
+---
+
+### Requirement 03 — Explainable priority rationale
+
+**Pain point:**  
+Government teams need to justify why one property or asset is inspected before another.
+
+**Product requirement:**  
+Expose factor-level priority rationale instead of showing only a single score.
+
+**Acceptance criteria:**  
+The triage panel displays visible priority factors such as exposure risk, incident proximity, asset criticality, road access, imagery-change signal, and workflow status.
+
+**Priority:**  
+P0 for Phase 1 because explainability is required for trust and cross-team alignment.
+
+---
+
+### Requirement 04 — Usable Web GIS interaction model
+
+**Pain point:**  
+Users need operational control without overwhelming the map interface.
+
+**Product requirement:**  
+Provide layer controls, basemap selection, hover feedback, click selection, and queue-to-map navigation without cluttering the primary map view.
+
+**Acceptance criteria:**  
+Users can toggle key layers, select features, review item details, and navigate from queue to map while preserving geographic context.
+
+**Priority:**  
+P1 for Phase 1 because it improves usability after the core triage workflow is working.
+
+---
+
+## 8. Product Trade-offs
+
+### 01. Operational triage over fire prediction
+
+I treated the fire perimeter as an input rather than building a fire-spread model because the MVP problem was post-event inspection coordination, not emergency forecasting.
+
+### 02. Explainable scoring over black-box automation
+
+Government users need to justify prioritization decisions, so I exposed priority factors instead of presenting an unexplained AI score.
+
+### 03. Workflow panel over map popups
+
+A persistent side panel supports repeated review, status updates, and queue-based work better than isolated map popups.
+
+### 04. Synthetic data over premature live integration
+
+I used synthetic GeoJSON to validate the workflow before investing in ArcGIS REST, FeatureServer, or customer-specific data integrations.
+
+### 05. Decision-support MVP over full field-operations platform
+
+I kept routing, authentication, mobile field forms, and backend persistence out of Phase 1 so the prototype could focus on the core inspection-prioritization workflow.
+
+---
+
+## 9. Priority Logic
+
+The prototype uses a transparent priority score to demonstrate how operational signals could be converted into an inspection queue. The scoring model is synthetic, but the product logic is designed to be explainable and integration-ready.
+
+Priority is represented through visible factors rather than an unexplained score.
+
+### Example signal categories
+
+- Exposure risk
+- Incident proximity
+- Asset criticality
+- Road access constraints
+- Imagery-change signal
+- Workflow status
+
+The goal is not to automate government judgment. The goal is to help teams understand which items need attention first and why.
+
+---
+
+## 10. Core User Workflow
+
+1. User opens the wildfire inspection map.
+2. User reviews affected-area context, parcels, incidents, road access, and public assets.
+3. User selects a parcel, asset, or inspection queue item.
+4. The map highlights the selected feature.
+5. The triage panel displays priority level, score, recommended action, workflow status, and factor-level rationale.
+6. User reviews or updates the item status.
+7. User moves through the queue to prioritize field inspection decisions.
+
+The workflow is designed around a repeated operational loop: review, understand, prioritize, and act.
+
+---
+
+## 11. What I Built
+
+I built the Phase 1 prototype to validate the core product workflow before adding production data integrations or field-operations complexity.
+
+The prototype includes:
+
+- Interactive Web GIS map
+- Parcel and public-asset layers
+- Reported incident layer
+- Road access constraints
+- Priority scoring
+- Triage panel
+- Inspection queue
+- Layer controls
+- Hover and click interactions
+- Queue-to-map navigation
+- Synthetic GeoJSON data model
+- Integration-ready layer structure
+
+---
+
+## 12. Web GIS Implementation
+
+The prototype uses MapLibre GL JS for basemap rendering, GeoJSON sources and layers, layer visibility toggles, feature hover and click selection, selected-feature highlighting, and queue-to-map camera navigation.
+
+Phase 1 uses synthetic operational GeoJSON data while preserving a structure that could later support public GIS datasets, ArcGIS REST services, FeatureServer endpoints, or customer-specific government GIS layers.
+
+The implementation is intentionally lightweight. It validates the product workflow before introducing production architecture, authentication, database persistence, field routing, or customer-specific data pipelines.
+
+---
+
+## 13. Data Strategy
+
+### Real geographic context
+
+The basemap provides real geographic context for the prototype environment.
+
+### Synthetic operational layers
+
+Operational layers are synthetic and used for product demonstration, including:
+
+- Wildfire affected-area boundary
+- Parcels
+- Public assets
+- Reported incidents
+- Road access constraints
+- Priority scores
+- Imagery-change indicators
+- Workflow statuses
+- Recommended actions
+
+This separation is intentional. It allows the prototype to demonstrate the product workflow without implying access to official emergency-response data or production government systems.
+
+---
+
+## 14. Success Metrics I Would Track
+
+Because this is a portfolio prototype, the following are proposed validation metrics rather than measured production results.
+
+### Workflow efficiency
+
+- Time to identify top inspection candidates
+- Number of clicks from map selection to recommended action
+- Reduction in manual switching between maps, reports, and spreadsheets
+
+### Trust and explainability
+
+- Percent of priority decisions with visible rationale
+- Coordinator confidence in priority ranking during user testing
+- User comprehension of why an item is high, medium, or low priority
+
+### Pilot and business readiness
+
+- Percent of queue items with clear next action
+- Pilot readiness for public works or emergency management workflows
+- Sales demo usefulness for government disaster-response use cases
+
+---
+
+## 15. What I Would Validate Next
+
+### 01. User trust in priority explanations
+
+Test whether inspection coordinators understand and trust the factor-level rationale behind priority scores.
+
+### 02. Signal importance
+
+Validate which signals matter most to government users: imagery change, parcel type, road access, incident reports, or asset criticality.
+
+### 03. Workflow speed
+
+Measure whether users can move from map review to inspection action faster than with separate map, spreadsheet, and reporting workflows.
+
+### 04. Data integration readiness
+
+Explore integration paths for public GIS datasets, ArcGIS REST services, FeatureServer endpoints, and high-resolution aerial imagery products.
+
+### 05. Pilot readiness
+
+Identify what would be required for a public works or emergency management pilot, including data availability, user permissions, workflow status persistence, reporting needs, and operational handoff.
+
+---
+
+## 16. Future Integration Opportunities
+
+For a geospatial intelligence product, the opportunity is not just displaying imagery or GIS layers. The opportunity is packaging those signals into government workflows that support property assessment, public safety, asset management, disaster response, and field operations.
+
+Potential future integrations include:
+
+- Public GIS datasets
+- ArcGIS REST / FeatureServer endpoints
+- High-resolution aerial imagery
+- Imagery-change detection
+- Parcel and property intelligence
+- Public asset and infrastructure layers
+- Road access and transportation network data
+- Field assignment and inspection status persistence
+- Exportable inspection lists and stakeholder reporting
+- Sales engineering demo scenarios
+- Customer success feedback loops
+
+These integrations would help turn the Phase 1 prototype from a standalone workflow demo into a configurable government solution concept.
+
+---
+
+## 17. Prototype Disclaimer
+
+This is a portfolio prototype, not an official emergency-response product.
+
+Phase 1 uses local synthetic operational GeoJSON for parcels, incidents, public assets, road constraints, priority scores, imagery-change indicators, statuses, and recommended actions. The basemap provides real geographic context, but operational layers and workflow signals are simulated for product demonstration.
+
+The prototype is intended to demonstrate product thinking, Web GIS workflow design, MVP scoping, explainable prioritization logic, and future integration planning. It should not be used for real emergency response, public safety operations, or official inspection prioritization.
