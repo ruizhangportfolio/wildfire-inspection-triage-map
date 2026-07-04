@@ -4,6 +4,11 @@ A portfolio-ready GIS product prototype for post-wildfire inspection prioritizat
 
 The app helps emergency management and public works teams review an affected-area boundary, parcels, public assets, reported incidents, road access constraints, inspection priority scores, and workflow status in one focused map experience.
 
+## Project Links
+
+- [Product Brief](https://github.com/ruizhangportfolio/wildfire-inspection-triage-map/blob/main/docs/wildfire-product-brief.md)
+- [GitHub](https://github.com/ruizhangportfolio/wildfire-inspection-triage-map)
+
 ## Run Locally
 
 ```bash
