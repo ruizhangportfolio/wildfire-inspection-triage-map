@@ -36,7 +36,7 @@ The case demonstrates how I approached an ambiguous government workflow as a pro
 - Designed transparent priority logic intended to support, not replace, human judgment.
 - Built a working Web GIS prototype using AI coding tools.
 - Defined a validation framework for workflow value, decision quality, operational risk, and pilot readiness.
-- Developed Nearmap integration hypotheses for imagery, property intelligence, and existing government GIS workflows.
+- Developed vendor-neutral integration hypotheses for imagery, property intelligence, and existing government GIS workflows.
 
 The prototype uses a real basemap for geographic context and synthetic operational GeoJSON for product demonstration. It is not an official emergency-response system and does not represent real inspection recommendations or measured outcomes.
 
@@ -346,7 +346,7 @@ I would establish the baseline and define acceptable thresholds with domain expe
 
 ---
 
-## 15. Nearmap Integration Hypotheses
+## 15. Imagery and GIS Integration Hypotheses
 
 The opportunity is not simply to add another imagery layer. It is to test how current imagery and derived property intelligence could improve a government decision workflow while preserving traceability and existing GIS governance.
 
@@ -362,7 +362,7 @@ Test which property attributes improve prioritization while exposing source date
 
 Explore Esri and API integration paths so imagery and derived insights support current public-works systems instead of creating another isolated map viewer.
 
-These are application hypotheses for a future pilot, not claims about an existing Nearmap implementation.
+These are application hypotheses for a future pilot, not claims about an existing production implementation.
 
 ---
 
